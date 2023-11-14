@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 class Task implements Serializable {
-    @Serial
+    @Serial // For serialization of objects in memory.
     private static final long serialVersionUID = 1L;
 
     private final String title;
@@ -44,7 +44,7 @@ class Task implements Serializable {
         this.completed = completed;
     }
 
-    @Override
+    @Override // Override toString() method to display task details in a table format.
     public String toString() {
         return String.format("%s - %s - Priority: %d - Due: %tF - %s",
                 title, completed ? "Completed" : "Pending", priority, dueDate, description);

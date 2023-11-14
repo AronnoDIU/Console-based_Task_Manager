@@ -1,8 +1,20 @@
 # Console-based Task Manager
 
-Console-based Task Manager is a simple Java-based application 
-that allows users to manage their tasks through a text-based interface. 
+Console-based Task Manager is a simple Java-based application
+that allows users to manage their tasks through a text-based interface.
 This project is ideal for those who want to practice Java programming skills and build a basic task management system.
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
+- [License](#license)
 
 ## Features
 
@@ -30,38 +42,24 @@ This project is ideal for those who want to practice Java programming skills and
    ```bash
    git clone https://github.com/AronnoDIU/Console-based_Task_Manager.git
 
-
 ## Usage
 
 1. Upon launching the application, you will be presented with a menu of options.
 2. Use the number keys to select an option from the menu and enter to execute the selected action.
-3. Follow the prompts and enter the requested information to perform various actions, such as adding a task, viewing tasks, marking tasks as completed, etc.
+3. Follow the prompts and enter the requested information to perform various actions, such as adding a task, viewing
+   tasks, marking tasks as completed, etc.
 4. Use the search option to find tasks containing specific keywords in the task title or description fields.
-5. Use the sort options to order tasks by due date or priority in ascending or descending order based on the selected option.
+5. Use the sort options to order tasks by due date or priority in ascending or descending order based on the selected
+   option.
 6. Use the exit option to save your tasks and exit the application and save them to a file.
 7. Once you exit the application, your tasks will be saved to a file.
 8. You can also restart the application and load your saved tasks from the file.
 9. Enjoy using the application!
 
-## Features
-
-- Add tasks with a title, description, due date, and priority (optional) and save them to a file for future use.
-- View all tasks, including their details including filtering and sorting options based on due date or priority.
-- View completed tasks or pending tasks separately based on their status and filtering options.
-- Mark tasks as completed or delete them from the list of tasks and save them to a file for future use.
-- Delete tasks from the list of tasks based on their status.
-- Sort tasks by due date or priority in ascending or descending order based on the selected option.
-- Search for tasks based on keywords in the task title or description fields.
-- Enhanced search functionality based on keywords in the task title or description fields.
-- Option to exit the application and save tasks to a file.
-
 ## Contributing
 
-Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. Please make sure to follow the existing coding style and include tests for any new functionality.
-
-## License
-
-This project is licensed under the MIT license.
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a
+pull request. Please make sure to follow the existing coding style and include tests for any new functionality.
 
 ## Credits
 
@@ -69,8 +67,14 @@ This project is licensed under the MIT license.
 
 ## Acknowledgements
 
-- [List any resources or references you found helpful during the development of the project]
+Inspired by the need for a simple console-based task manager. Built with Java and love.
+
+Happy coding!
 
 ## Contact
 
 If you have any questions or feedback, feel free to reach out to [yeasir35-1501@diu.edu.bd].
+
+## License
+
+This project is licensed under the MIT license.
