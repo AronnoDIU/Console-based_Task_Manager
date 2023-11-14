@@ -28,7 +28,7 @@ This project is ideal for those who want to practice Java programming skills and
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/AronnoDIU/console-task-manager.git
+   git clone https://github.com/AronnoDIU/Console-based_Task_Manager.git
 
 
 ## Usage
@@ -61,7 +61,7 @@ Contributions are welcome! If you find any bugs or have suggestions for improvem
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT license.
 
 ## Credits
 
