@@ -5,7 +5,7 @@ import java.util.*;
 
 public class TaskManager {
     private static final String FILE_NAME = "tasks.ser";
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner userInput = new Scanner(System.in);
     private static List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -13,37 +13,38 @@ public class TaskManager {
 
         while (true) {
             displayMenu();
-            String choice = scanner.nextLine().toLowerCase();
+            int choice = userInput.nextInt();
+            userInput.nextLine();
 
             switch (choice) {
-                case "add":
+                case 1: // For Add a task
                     addTask();
                     break;
-                case "view all":
+                case 2: // For View all tasks
                     viewAllTasks();
                     break;
-                case "view completed":
+                case 3: // For View completed tasks
                     viewCompletedTasks();
                     break;
-                case "view pending":
+                case 4: // For View pending tasks
                     viewPendingTasks();
                     break;
-                case "complete":
+                case 5: // For Mark a task as completed
                     markTaskAsCompleted();
                     break;
-                case "delete":
+                case 6: // For Delete a task
                     deleteTask();
                     break;
-                case "sort by date":
+                case 7: // For Sort tasks by due date
                     sortByDueDate();
                     break;
-                case "sort by priority":
+                case 8: // For Sort tasks by priority
                     sortByPriority();
                     break;
-                case "search":
+                case 9: // For Search for tasks
                     searchTasks();
                     break;
-                case "exit":
+                case 10: // For Exit
                     saveTasksToFile();
                     System.exit(0);
                 default:
@@ -69,16 +70,18 @@ public class TaskManager {
 
     private static void addTask() {
         System.out.print("Enter task title: ");
-        String title = scanner.nextLine();
+        String title = userInput.nextLine();
 
         System.out.print("Enter task description: ");
-        String description = scanner.nextLine();
+        String description = userInput.nextLine();
 
-        System.out.print("Enter due date (yyyy-MM-dd): ");
-        Date dueDate = parseDate(scanner.nextLine());
+        Date dueDate = null;
+        while (dueDate == null) {
+            System.out.print("Enter due date (yyyy-MM-dd): ");
+            dueDate = parseDate(userInput.nextLine());
+        }
 
-        System.out.print("Enter priority (1 - Low, 2 - Medium, 3 - High): ");
-        int priority = Integer.parseInt(scanner.nextLine());
+        int priority = getPriority();
 
         Task task = new Task(title, description, dueDate, priority);
         tasks.add(task);
@@ -86,11 +89,40 @@ public class TaskManager {
         System.out.println("Task added successfully.");
     }
 
+    private static int getPriority() {
+        int priority = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.print("Enter priority (1 - Low, 2 - Medium, 3 - High): ");
+                priority = Integer.parseInt(userInput.nextLine());
+
+                if (priority >= 1 && priority <= 3) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid priority. Please enter a number between 1 and 3.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+
+        return priority;
+    }
+
     private static void viewAllTasks() {
         if (tasks.isEmpty()) {
             System.out.println("No tasks available.");
         } else {
-            tasks.forEach(System.out::println);
+            tasks.forEach(task -> {
+                System.out.println("Title: " + task.getTitle());
+                System.out.println("Description: " + task.getDescription());
+                System.out.println("Due Date: " + task.getDueDate());
+                System.out.println("Priority: " + task.getPriority());
+                System.out.println("Status: " + (task.isCompleted() ? "Completed" : "Pending"));
+                System.out.println("---------------");
+            });
         }
     }
 
@@ -115,12 +147,12 @@ public class TaskManager {
     private static void markTaskAsCompleted() {
         viewPendingTasks();
         System.out.print("Enter the ID of the task to mark as completed: ");
-        int taskId = Integer.parseInt(scanner.nextLine());
+        int taskId = getTaskId();
 
         if (taskId >= 0 && taskId < tasks.size()) {
             Task task = tasks.get(taskId);
             task.setCompleted(true);
-            System.out.println("Task marked as completed.");
+            System.out.println("Task '" + task.getTitle() + "' marked as completed.");
         } else {
             System.out.println("Invalid task ID.");
         }
@@ -129,7 +161,7 @@ public class TaskManager {
     private static void deleteTask() {
         viewAllTasks();
         System.out.print("Enter the ID of the task to delete: ");
-        int taskId = Integer.parseInt(scanner.nextLine());
+        int taskId = getTaskId();
 
         if (taskId >= 0 && taskId < tasks.size()) {
             Task task = tasks.remove(taskId);
@@ -137,6 +169,27 @@ public class TaskManager {
         } else {
             System.out.println("Invalid task ID.");
         }
+    }
+
+    private static int getTaskId() {
+        int taskId = -1;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                taskId = Integer.parseInt(userInput.nextLine());
+
+                if (taskId >= 0 && taskId < tasks.size()) {
+                    validInput = true;
+                } else {
+                    System.out.println("Invalid task ID. Please enter a valid ID.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+
+        return taskId;
     }
 
     private static void sortByDueDate() {
@@ -151,7 +204,7 @@ public class TaskManager {
 
     private static void searchTasks() {
         System.out.print("Enter keyword to search for tasks: ");
-        String keyword = scanner.nextLine().toLowerCase();
+        String keyword = userInput.nextLine().toLowerCase();
 
         List<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {

@@ -20,35 +20,33 @@ class Task implements Serializable {
         this.priority = priority;
     }
 
-    // Getters and setters (not shown for brevity)
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 
     @Override
     public String toString() {
         return String.format("%s - %s - Priority: %d - Due: %tF - %s",
                 title, completed ? "Completed" : "Pending", priority, dueDate, description);
-    }
-
-    public void setCompleted(boolean b) {
-        this.completed = b;
-    }
-
-    public String getTitle() {
-        return null;
-    }
-
-    public <U> U getDueDate() {
-        return null;
-    }
-
-    public <U> U getPriority() {
-        return null;
-    }
-
-    public String getDescription() {
-        return null;
-    }
-
-    public boolean isCompleted() {
-        return false;
     }
 }
