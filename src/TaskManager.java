@@ -11,6 +11,7 @@ public class TaskManager {
     public static void main(String[] args) {
         loadTasksFromFile(); // Load tasks from file if it exists else start with an empty list.
 
+        // Loop until the user exits the program.
         while (true) {
             displayMenu(); // Display menu options to user.
             int choice = userInput.nextInt(); // Get user choice from user input
